@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PresentationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages.home');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', function() {
+    return view('home');
+})->name('home')->middleware('auth');
+
+// Presentation
+Route::get('/presentation', [PresentationController::class, 'index']);
+Route::get('/createPresentation', [PresentationController::class, 'create']);
+Route::get('/editPresentation', [PresentationController::class, 'edit']);
+Route::post('/create-presentation', [PresentationController::class, 'store']);
+
