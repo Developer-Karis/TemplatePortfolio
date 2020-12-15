@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Presentation;
-use App\Models\Project;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
-class PresentationController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class PresentationController extends Controller
      */
     public function index()
     {
-        $pres = Presentation::all();
-        $projects = Project::all();
-        return view('pages.home', compact('pres', 'projects'));
+        //
     }
 
     /**
@@ -44,10 +41,10 @@ class PresentationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Presentation $presentation)
+    public function show(Role $role)
     {
         //
     }
@@ -55,38 +52,33 @@ class PresentationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Presentation $presentation)
+    public function edit(Role $role)
     {
-        $editPres = Presentation::all();
-        return view('admin.presentation.editPresentation', compact('editPres'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Presentation $presentation, $id)
+    public function update(Request $request, Role $role)
     {
-        $update = Presentation::find($id);
-        $update->titre = $request->newTitre;
-        $update->sous_titre = $request->newSousTitre;
-        $update->save();
-        return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presentation $presentation)
+    public function destroy(Role $role)
     {
         //
     }

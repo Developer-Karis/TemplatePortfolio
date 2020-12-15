@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,15 @@ Route::get('/home', function() {
 })->name('home')->middleware('auth');
 
 // Presentation
-Route::get('/presentation', [PresentationController::class, 'index']);
-Route::get('/createPresentation', [PresentationController::class, 'create']);
-Route::get('/editPresentation', [PresentationController::class, 'edit']);
-Route::post('/create-presentation', [PresentationController::class, 'store']);
+Route::get('/', [PresentationController::class, 'index']);
+Route::get('/editPresentation', [PresentationController::class, 'edit'])->middleware('adminAccess');
+Route::post('/update-pres/{id}', [PresentationController::class, 'update'])->middleware('adminAccess');
+
+// Projects
+Route::get('/all-projects', [ProjectController::class, 'index']);
+Route::get('/createProject', [ProjectController::class, 'create']);
+Route::post('/store-projects', [ProjectController::class, 'store']);
+Route::get('/edit-project/{id}', [ProjectController::class, 'edit']);
+Route::post('/update-project/{id}', [ProjectController::class, 'update']);
+Route::get('/delete-project/{id}', [ProjectController::class, 'destroy']);
 

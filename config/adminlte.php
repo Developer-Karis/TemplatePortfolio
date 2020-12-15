@@ -268,12 +268,6 @@ return [
         ],
         ['header' => 'PRESENTATION'],
         [
-            'text'        => 'Créer',
-            'url'         => '/createPresentation',
-            'icon'        => 'fas fa-plus-circle mr-2 text-success',
-            'label_color' => 'success',
-        ],
-        [
             'text'        => 'Modifier',
             'url'         => '/editPresentation',
             'icon'        => 'fas fa-edit mr-2 text-light',
@@ -281,19 +275,14 @@ return [
         ],
         ['header' => 'PROJECTS'],
         [
+            'text' => 'Voir',
+            'url'  => '/all-projects',
+            'icon' => 'fas fa-eye mr-2 text-light',
+        ],
+        [
             'text' => 'Créer',
-            'url'  => 'admin/settings',
+            'url'  => '/createProject',
             'icon' => 'fas fa-plus-circle mr-2 text-success',
-        ],
-        [
-            'text' => 'Modifier',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-edit mr-2 text-light',
-        ],
-        [
-            'text' => 'Supprimer',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-trash mr-2 text-danger',
         ],
         ['header' => 'ABOUT ME'],
         [
