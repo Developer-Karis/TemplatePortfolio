@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\CarouselController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +37,29 @@ Route::get('/editPresentation', [PresentationController::class, 'edit'])->middle
 Route::post('/update-pres/{id}', [PresentationController::class, 'update'])->middleware('adminAccess');
 
 // Projects
-Route::get('/all-projects', [ProjectController::class, 'index']);
-Route::get('/createProject', [ProjectController::class, 'create']);
-Route::post('/store-projects', [ProjectController::class, 'store']);
-Route::get('/edit-project/{id}', [ProjectController::class, 'edit']);
-Route::post('/update-project/{id}', [ProjectController::class, 'update']);
-Route::get('/delete-project/{id}', [ProjectController::class, 'destroy']);
+Route::get('/all-projects', [ProjectController::class, 'index'])->middleware('adminAccess');
+Route::get('/createProject', [ProjectController::class, 'create'])->middleware('adminAccess');
+Route::post('/store-projects', [ProjectController::class, 'store'])->middleware('adminAccess');
+Route::get('/edit-project/{id}', [ProjectController::class, 'edit'])->middleware('adminAccess');
+Route::post('/update-project/{id}', [ProjectController::class, 'update'])->middleware('adminAccess');
+Route::get('/delete-project/{id}', [ProjectController::class, 'destroy'])->middleware('adminAccess');
+
+// About
+Route::get('/edit-about', [AboutController::class, 'edit'])->middleware('adminAccess');
+Route::post('/update-about/{id}', [AboutController::class, 'update'])->middleware('adminAccess');
+
+// Contact
+Route::post('/store-contact', [ContactController::class, 'store']);
+Route::post('/update-email/{id}', [ContactController::class, 'update']);
+Route::get('/allEmails', [ContactController::class, 'index']);
+Route::get('/edit-email/{id}', [ContactController::class, 'edit']);
+Route::get('/delete-email/{id}', [ContactController::class, 'destroy']);
+
+// Carousel
+Route::get('/all-carousels', [CarouselController::class, 'index']);
+Route::get('/create-carousel', [CarouselController::class, 'create']);
+Route::post('/store-image-carousel', [CarouselController::class, 'store']);
+Route::get('/edit-carousel/{id}', [CarouselController::class, 'edit']);
+Route::post('/update-carousel/{id}', [CarouselController::class, 'update']);
+Route::get('/delete-carousel/{id}', [CarouselController::class, 'destroy']);
 

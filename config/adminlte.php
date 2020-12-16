@@ -255,6 +255,12 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Carousel',
+            'url'         => '/#carouselExampleIndicators',
+            'icon'        => 'far fa-image mr-2 text-warning',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'Projects',
             'url'         => '/#projects',
             'icon'        => 'fas fa-list-ul mr-2 text-warning',
@@ -287,30 +293,25 @@ return [
         ['header' => 'ABOUT ME'],
         [
             'text' => 'Modifier',
-            'url'  => 'admin/settings',
+            'url'  => '/edit-about',
             'icon' => 'fas fa-edit mr-2 text-light',
         ],
         ['header' => 'CONTACT'],
         [
-            'text' => 'Modifier',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-edit mr-2 text-light',
+            'text' => 'Voir',
+            'url'  => '/allEmails',
+            'icon' => 'fas fa-eye mr-2 text-light',
         ],
         ['header' => 'CAROUSEL'],
         [
+            'text' => 'Voir',
+            'url'  => '/all-carousels',
+            'icon' => 'fas fa-eye mr-2 text-light',
+        ],
+        [
             'text' => 'Créer',
-            'url'  => 'admin/settings',
+            'url'  => '/create-carousel',
             'icon' => 'fas fa-plus-circle mr-2 text-success',
-        ],
-        [
-            'text' => 'Modifier',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-edit mr-2 text-light',
-        ],
-        [
-            'text' => 'Supprimer',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-trash mr-2 text-danger',
         ],
         ['header' => 'SKILLS'],
         [

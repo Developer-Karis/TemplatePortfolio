@@ -32,6 +32,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Presentation</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger"
+                            href="#carouselExampleIndicators">Carousel</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About me</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Contact</a></li>
@@ -85,6 +87,34 @@
             </div>
         </div>
     </header>
+    <!-- Carousel-->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            @foreach ($carousels as $item)
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{$item->id}}"></li>
+            @endforeach
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="{{asset('mesImages/uz6WiId9IWYGYGqSTB5uypg8OEk85cY3d5SK1hEN.jpg')}}"
+                    alt="First slide" height="850">
+            </div>
+            @foreach ($carousels as $item)
+            <div class="carousel-item">
+                <img class="d-block w-100" src="{{asset('mesImages/'.$item->src)}}" alt="Third slide" height="850">
+            </div>
+            @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
     <!-- Projects-->
     <section class="projects-section bg-light" id="projects">
         <div class="container">
@@ -136,19 +166,19 @@
                 </div>
             </div>
             <!-- Mes Projects -->
-            <h1 class="text-center mt-5">Mes Projects</h1>
+            {{-- <h1 class="text-center mt-5">Mes Projects</h1> --}}
             <hr class="d-lg-block mb-0 mr-0 w-50 m-auto bg-primary" />
             @foreach ($projects as $item)
             <div class="row w-75 m-auto justify-content-center no-gutters pt-5">
                 <div class="col-lg-6"><img class="img-fluid" src="{{asset('mesImages/'.$item->src)}}" alt=""
-                        style="width: 558px;" /></div>
+                        style="width: 558px; height: 300px;" /></div>
                 <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project">
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-right">
-                                <h4 class="text-white">{{$item->nom}}</h4>
-                                <p class="mb-0 text-white-50">{{$item->description}}</p>
-                                <p class="mb-0 text-white-50">{{$item->tags}}</p>
+                                <h4 class="text-white">Nom : {{$item->nom}}</h4>
+                                <p class="mb-0 text-white-50 mb-3">Description : {{$item->description}}</p>
+                                <p class="mb-0 text-white btn btn-info p-2 rounded-pill">Tag : {{$item->tags}}</p>
                                 <hr class="d-none d-lg-block mb-0 mr-0" />
                             </div>
                         </div>
@@ -161,18 +191,14 @@
     <!-- About-->
     <section class="about-section text-center" style="margin-bottom: 150px;" id="about">
         <div class="container">
+            @foreach ($abouts as $item)
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
-                    <p class="text-white-50">
-                        Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now,
-                        simply download the template on
-                        <a href="https://startbootstrap.com/theme/grayscale/">the preview page</a>
-                        . The theme is open source, and you can use it for any purpose, personal or commercial.
-                    </p>
+                    <h2 class="text-white mb-5">{{$item->titre}}</h2>
                 </div>
             </div>
-            <img class="img-fluid" src="../img/ipad.png" alt="" />
+            <img class="img-fluid" src="{{asset($item->src)}}" alt="" />
+            @endforeach
         </div>
     </section>
     <!-- Signup-->
@@ -192,9 +218,9 @@
         </div>
     </section>
     <!-- Contact-->
-    <section class="contact-section bg-black">
+    <section class="contact-section pt-4 bg-black">
         <div class="container">
-            <div class="row">
+            <div class="row mb-5 pt-5">
                 <div class="col-md-4 mb-3 mb-md-0">
                     <div class="card py-4 h-100">
                         <div class="card-body text-center">
@@ -225,6 +251,36 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <iframe class="mt-5 mb-5"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10074.77330432947!2d4.341225!3d50.855363!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc7799151146ebf77!2sMolenGeek!5e0!3m2!1sfr!2sbe!4v1608111450691!5m2!1sfr!2sbe"
+                width="1115" height="450" frameborder="0" style="border: 5px solid lightblue; padding: 5px;"
+                allowfullscreen="" aria-hidden="false" tabindex="0">
+            </iframe>
+            <div class="card border-bottom-0 mt-5 w-75 m-auto">
+                <div class="card-header bg-primary text-white">
+                    Contact Me
+                </div>
+                <form action="/store-contact" method="post">
+                    @csrf
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="">Sujet</label>
+                            <input type="text" name="sujet" class="form-control w-50">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" name="email" class="form-control w-50">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Message</label>
+                            <textarea name="message" rows="4" class="form-control w-50"></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-primary">
+                        <button type="submit" class="btn bg-warning px-3 py-3 text-capitalize">Envoyer</button>
+                    </div>
+                </form>
             </div>
             <div class="social d-flex justify-content-center">
                 <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>

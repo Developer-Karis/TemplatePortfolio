@@ -27,10 +27,10 @@
                     <div class="form-group">
                         <label for="">Tags</label>
                         <select name="tags" class="form-control" style="width: max-content;">
-                            <option value="Création de site internet">Création de site internet</option>
-                            <option value="Impression Digitale">Impression Digitale</option>
-                            <option value="Retouches Photo">Retouches Photo</option>
-                            <option value="Montage vidéo">Montage vidéo</option>
+                            <option value="HTML">HTML</option>
+                            <option value="CSS">CSS</option>
+                            <option value="Bootstrap">Bootstrap</option>
+                            <option value="Javascript">Javascript</option>
                         </select>
                     </div>
                 </div>

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Presentation;
-use App\Models\Project;
 use App\Models\About;
-use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class PresentationController extends Controller
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +15,7 @@ class PresentationController extends Controller
      */
     public function index()
     {
-        $pres = Presentation::all();
-        $projects = Project::all();
-        $abouts = About::all();
-        $carousels = Carousel::all();
-        return view('pages.home', compact('pres', 'projects', 'abouts', 'carousels'));
+        //
     }
 
     /**
@@ -48,10 +42,10 @@ class PresentationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function show(Presentation $presentation)
+    public function show(About $about)
     {
         //
     }
@@ -59,38 +53,43 @@ class PresentationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function edit(Presentation $presentation)
+    public function edit(About $about)
     {
-        $editPres = Presentation::all();
-        return view('admin.presentation.editPresentation', compact('editPres'));
+        $editAbout = About::all();
+        return view('admin.about.editAbout', compact('editAbout'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Presentation $presentation, $id)
+    public function update(Request $request, About $about, $id)
     {
-        $update = Presentation::find($id);
-        $update->titre = $request->newTitre;
-        $update->sous_titre = $request->newSousTitre;
-        $update->save();
+        $updateAbout = About::find($id);
+        $updateAbout->titre = $request->nameAbout;
+        $updateAbout->src = $request->file('newImageAbout')->hashName();
+        // 2 . Supprimer l'image de base
+	    Storage::disk('public')->delete('mesImages/' . $updateAbout->src);
+        // 3 . Modifier le chemin de l'image dans la colonne src par celui de la nouvelle image
+        $updateAbout->save();
+	    // 4 . Rajouter l'image dans le dossier
+	    $request->file('newImageAbout')->storePublicly('mesImages', 'public');
         return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Presentation  $presentation
+     * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presentation $presentation)
+    public function destroy(About $about)
     {
         //
     }

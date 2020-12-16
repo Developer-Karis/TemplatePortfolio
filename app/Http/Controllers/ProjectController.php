@@ -88,7 +88,7 @@ class ProjectController extends Controller
 	    Storage::disk('public')->delete('mesImages/' . $updateProject->src);
         // 3 . Modifier le chemin de l'image dans la colonne src par celui de la nouvelle image
         $updateProject->save();
-	// 4 . Rajouter l'image dans le dossier
+	    // 4 . Rajouter l'image dans le dossier
 	    $request->file('newImage')->storePublicly('mesImages', 'public');
         return redirect()->back();
     }
