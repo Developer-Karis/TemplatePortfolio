@@ -9,7 +9,7 @@
             <div class="card-header bg-teal">
                 Changer l'Image du Carousel
             </div>
-            <form action="/update-carousel/{{$editCarousel->id}}" method="post">
+            <form action="/update-carousel/{{$editCarousel->id}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <img src="{{asset('mesImages/'.$editCarousel->src)}}" alt="" height="250" class="mb-5">

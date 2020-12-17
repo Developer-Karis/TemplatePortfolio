@@ -26,11 +26,10 @@
                     </div>
                     <div class="form-group">
                         <label for="">Tags</label>
-                        <select name="tags" class="form-control" style="width: max-content;">
-                            <option value="HTML">HTML</option>
-                            <option value="CSS">CSS</option>
-                            <option value="Bootstrap">Bootstrap</option>
-                            <option value="Javascript">Javascript</option>
+                        <select name="skill_id" class="form-control" style="width: max-content;">
+                            @foreach ($skills as $item)
+                            <option value="{{$item->id}}">{{$item->nom}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

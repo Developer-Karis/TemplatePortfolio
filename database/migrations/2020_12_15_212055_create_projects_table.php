@@ -18,7 +18,8 @@ class CreateProjectsTable extends Migration
             $table->string('nom');
             $table->string('src');
             $table->string('description');
-            $table->string('tags');
+            $table->unsignedBigInteger('skill_id');
+            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
             $table->timestamps();
         });
     }

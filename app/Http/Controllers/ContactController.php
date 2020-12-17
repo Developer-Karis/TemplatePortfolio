@@ -44,7 +44,7 @@ class ContactController extends Controller
         $storeContact->message = $request->message;
         $storeContact->save();
         Mail::to($request->email)->send(new MailSender($request));
-        return redirect()->back();
+        return redirect('/allEmails');
     }
 
     /**
@@ -84,7 +84,7 @@ class ContactController extends Controller
         $updateContact->email = $request->newEmail;
         $updateContact->message = $request->newMessage;
         $updateContact->save();
-        return redirect()->back();
+        return redirect('/allEmails');
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,17 +50,24 @@ Route::get('/edit-about', [AboutController::class, 'edit'])->middleware('adminAc
 Route::post('/update-about/{id}', [AboutController::class, 'update'])->middleware('adminAccess');
 
 // Contact
-Route::post('/store-contact', [ContactController::class, 'store']);
-Route::post('/update-email/{id}', [ContactController::class, 'update']);
-Route::get('/allEmails', [ContactController::class, 'index']);
-Route::get('/edit-email/{id}', [ContactController::class, 'edit']);
-Route::get('/delete-email/{id}', [ContactController::class, 'destroy']);
+Route::post('/store-contact', [ContactController::class, 'store'])->middleware('adminAccess');
+Route::post('/update-email/{id}', [ContactController::class, 'update'])->middleware('adminAccess');
+Route::get('/allEmails', [ContactController::class, 'index'])->middleware('adminAccess');
+Route::get('/edit-email/{id}', [ContactController::class, 'edit'])->middleware('adminAccess');
+Route::get('/delete-email/{id}', [ContactController::class, 'destroy'])->middleware('adminAccess');
 
 // Carousel
-Route::get('/all-carousels', [CarouselController::class, 'index']);
-Route::get('/create-carousel', [CarouselController::class, 'create']);
-Route::post('/store-image-carousel', [CarouselController::class, 'store']);
-Route::get('/edit-carousel/{id}', [CarouselController::class, 'edit']);
-Route::post('/update-carousel/{id}', [CarouselController::class, 'update']);
-Route::get('/delete-carousel/{id}', [CarouselController::class, 'destroy']);
+Route::get('/all-carousels', [CarouselController::class, 'index'])->middleware('adminAccess');
+Route::get('/create-carousel', [CarouselController::class, 'create'])->middleware('adminAccess');
+Route::post('/store-image-carousel', [CarouselController::class, 'store'])->middleware('adminAccess');
+Route::get('/edit-carousel/{id}', [CarouselController::class, 'edit'])->middleware('adminAccess');
+Route::post('/update-carousel/{id}', [CarouselController::class, 'update'])->middleware('adminAccess');
+Route::get('/delete-carousel/{id}', [CarouselController::class, 'destroy'])->middleware('adminAccess');
 
+// Skills
+Route::get('/allSkills', [SkillController::class, 'index'])->middleware('adminAccess');
+Route::get('/create-skill', [SkillController::class, 'create'])->middleware('adminAccess');
+Route::post('/store-skill', [SkillController::class, 'store'])->middleware('adminAccess');
+Route::get('/edit-skill/{id}', [SkillController::class, 'edit'])->middleware('adminAccess');
+Route::post('/update-skill/{id}', [SkillController::class, 'update'])->middleware('adminAccess');
+Route::get('/delete-skill/{id}', [SkillController::class, 'destroy'])->middleware('adminAccess');

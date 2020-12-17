@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Carousel;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Skill;
+use App\Models\Project;
 
-class CarouselController extends Controller
+class SkillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        $carousels = Carousel::all();
-        return view('admin.carousel.allCarousels', compact('carousels'));
+        $skills = Skill::all();
+        return view('admin.skills.allSkills', compact('skills'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        return view('admin.carousel.createCarousel');
+        return view('admin.skills.createSkill');
     }
 
     /**
@@ -37,11 +37,11 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
-        $img = new Carousel();
-        $img->src = $request->file('imageCarousel')->hashName();
-        $img->save();
-        $request->file('imageCarousel')->storePublicly('mesImages', 'public');
-        return redirect('/allCarousels');
+        $storeSkill = new Skill();
+        $storeSkill->nom = $request->nomSkill;
+        $storeSkill->pourcentage = $request->pourcentage;
+        $storeSkill->save();
+        return redirect('/allSkills');
     }
 
     /**
@@ -63,8 +63,8 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        $editCarousel = Carousel::find($id);
-        return view('admin.carousel.editCarousel', compact('editCarousel'));
+        $editSkill = Skill::find($id);
+        return view('admin.skills.editSkill', compact('editSkill'));
     }
 
     /**
@@ -76,15 +76,11 @@ class CarouselController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateCarousel = Carousel::find($id);
-        $updateCarousel->src = $request->file('newImageCarousel')->hashName();
-	    // 2 . Supprimer l'image de base
-	    Storage::disk('public')->delete('mesImages/' . $updateCarousel->src);
-        // 3 . Modifier le chemin de l'image dans la colonne src par celui de la nouvelle image
-        $updateCarousel->save();
-	    // 4 . Rajouter l'image dans le dossier
-	    $request->file('newImageCarousel')->storePublicly('mesImages', 'public');
-        return redirect('/allCarousels');
+        $updateSkill = Skill::find($id);
+        $updateSkill->nom = $request->newNameSkill;
+        $updateSkill->pourcentage = $request->newPourcentage;
+        $updateSkill->save();
+        return redirect('/allSkills');
     }
 
     /**
@@ -95,8 +91,8 @@ class CarouselController extends Controller
      */
     public function destroy($id)
     {
-        $deleteCarousel = Carousel::find($id);
-        $deleteCarousel->delete();
+        $deleteSkill = Skill::find($id);
+        $deleteSkill->delete();
         return redirect()->back();
     }
 }

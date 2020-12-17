@@ -7,8 +7,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header bg-teal">
-                Tous les Projects
-                <h3>@if(Request()->page) Page : {{ Request()->page}}@endif</h3>
+                Tous les Skills
             </div>
             <div class="card-body">
                 <table class="table">
@@ -16,23 +15,19 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nom</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Tag</th>
+                            <th scope="col">Pourcentage</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pagination as $item)
+                        @foreach ($skills as $item)
                         <tr>
                             <th scope="row">{{$item->id}}</th>
                             <td>{{$item->nom}}</td>
-                            <td><img src="{{asset('mesImages/'. $item->src)}}" height="150" width="200" alt=""></td>
-                            <td>{{$item->description}}</td>
-                            {{-- <td>{{$item->skills->nom}}</td> --}}
+                            <td>{{$item->pourcentage}} %</td>
                             <td>
-                                <a href="/edit-project/{{$item->id}}" class="btn btn-primary mr-2">Edit</a>
-                                <a href="/delete-project/{{$item->id}}" class="btn btn-danger">Delete</a>
+                                <a href="/edit-skill/{{$item->id}}" class="btn btn-primary mr-2">Edit</a>
+                                <a href="/delete-skill/{{$item->id}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                         @endforeach
@@ -40,7 +35,6 @@
                 </table>
             </div>
         </div>
-        {{ $pagination->links() }}
     </div>
 </div>
 @stop

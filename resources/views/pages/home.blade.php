@@ -178,8 +178,12 @@
                             <div class="project-text w-100 my-auto text-center text-lg-right">
                                 <h4 class="text-white">Nom : {{$item->nom}}</h4>
                                 <p class="mb-0 text-white-50 mb-3">Description : {{$item->description}}</p>
-                                <p class="mb-0 text-white btn btn-info p-2 rounded-pill">Tag : {{$item->tags}}</p>
-                                <hr class="d-none d-lg-block mb-0 mr-0" />
+                                <p class="mb-0 text-white btn btn-info p-2 mb-3">{{$item->skills->nom}}</p>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{$item->skills->pourcentage}}%;" aria-valuenow="25"
+                                        aria-valuemin="0" aria-valuemax="100">{{$item->skills->pourcentage}}%</div>
+                                </div>
                             </div>
                         </div>
                     </div>

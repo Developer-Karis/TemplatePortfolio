@@ -315,19 +315,14 @@ return [
         ],
         ['header' => 'SKILLS'],
         [
+            'text' => 'Voir',
+            'url'  => '/allSkills',
+            'icon' => 'fas fa-eye mr-2 text-light',
+        ],
+        [
             'text' => 'Créer',
-            'url'  => 'admin/settings',
+            'url'  => '/create-skill',
             'icon' => 'fas fa-plus-circle mr-2 text-success',
-        ],
-        [
-            'text' => 'Modifier',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-edit mr-2 text-light',
-        ],
-        [
-            'text' => 'Supprimer',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-trash mr-2 text-danger',
         ],
         // [
         //     'text'    => 'multilevel',

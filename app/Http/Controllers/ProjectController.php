@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -16,7 +18,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('admin.projects.allProjects', compact('projects'));
+        $pagination = DB::table('projects')->simplePaginate(2);
+        return view('admin.projects.allProjects', compact('projects'))->with('pagination', $pagination);
     }
 
     /**
@@ -26,7 +29,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.createProject');
+        $skills = Skill::all();
+        return view('admin.projects.createProject', compact('skills'));
     }
 
     /**
@@ -41,10 +45,10 @@ class ProjectController extends Controller
         $storeProjects->nom = $request->nom;
         $storeProjects->src = $request->file('image')->hashName();
         $storeProjects->description = $request->description;
-        $storeProjects->tags = $request->tags;
+        $storeProjects->skill_id = $request->skill_id;
         $storeProjects->save();
-	    $request->file('image')->storePublicly('mesImages', 'public');
-        return redirect()->back();
+        $request->file('image')->storePublicly('mesImages', 'public');
+        return redirect('/all-projects');
     }
 
     /**
@@ -67,7 +71,8 @@ class ProjectController extends Controller
     public function edit(Project $project, $id)
     {
         $edit = Project::find($id);
-        return view('admin.projects.editProject', compact('edit'));
+        $skills = Skill::all();
+        return view('admin.projects.editProject', compact('edit', 'skills'));
     }
 
     /**
@@ -83,14 +88,14 @@ class ProjectController extends Controller
         $updateProject->nom = $request->newName;
         $updateProject->src = $request->file('newImage')->hashName();
         $updateProject->description = $request->newDescription;
-        $updateProject->tags = $request->newTag;
+        $updateProject->skill_id = $request->skill_id;
 	    // 2 . Supprimer l'image de base
 	    Storage::disk('public')->delete('mesImages/' . $updateProject->src);
         // 3 . Modifier le chemin de l'image dans la colonne src par celui de la nouvelle image
         $updateProject->save();
 	    // 4 . Rajouter l'image dans le dossier
 	    $request->file('newImage')->storePublicly('mesImages', 'public');
-        return redirect()->back();
+        return redirect('/all-projects');
     }
 
     /**
