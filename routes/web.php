@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::post('/store-projects', [ProjectController::class, 'store'])->middleware(
 Route::get('/edit-project/{id}', [ProjectController::class, 'edit'])->middleware('adminAccess');
 Route::post('/update-project/{id}', [ProjectController::class, 'update'])->middleware('adminAccess');
 Route::get('/delete-project/{id}', [ProjectController::class, 'destroy'])->middleware('adminAccess');
+Route::get('/search', [ProjectController::class, 'search'])->middleware('adminAccess');
 
 // About
 Route::get('/edit-about', [AboutController::class, 'edit'])->middleware('adminAccess');
@@ -71,3 +73,7 @@ Route::post('/store-skill', [SkillController::class, 'store'])->middleware('admi
 Route::get('/edit-skill/{id}', [SkillController::class, 'edit'])->middleware('adminAccess');
 Route::post('/update-skill/{id}', [SkillController::class, 'update'])->middleware('adminAccess');
 Route::get('/delete-skill/{id}', [SkillController::class, 'destroy'])->middleware('adminAccess');
+
+// Newsletter
+Route::post('/newsletter', [NewsletterController::class, 'store']);
+

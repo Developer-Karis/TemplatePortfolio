@@ -8,7 +8,6 @@
         <div class="card">
             <div class="card-header bg-teal">
                 Tous les Projects
-                <h3>@if(Request()->page) Page : {{ Request()->page}}@endif</h3>
                 <form action="/search" method="get" class="form-inline mx-2 justify-content-end">
                     <input type="hidden" name="_token" value="O5Kgk5E4lr3sufDWaAZ5iw8TweW0TjDKDjX4Hfl9">
                     <div class="input-group">
@@ -35,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pagination as $item)
+                        @foreach ($projects as $item)
                         <tr>
                             <th scope="row">{{$item->id}}</th>
                             <td>{{$item->nom}}</td>
@@ -52,7 +51,6 @@
                 </table>
             </div>
         </div>
-        {{ $pagination->links() }}
     </div>
 </div>
 @stop

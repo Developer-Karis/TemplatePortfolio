@@ -18,7 +18,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        $pagination = DB::table('projects')->simplePaginate(2);
+        $pagination = Project::simplePaginate(2);
         return view('admin.projects.allProjects', compact('projects'))->with('pagination', $pagination);
     }
 
@@ -110,5 +110,12 @@ class ProjectController extends Controller
         Storage::disk('public')->delete($newDelete->src);
         $newDelete->delete();
         return redirect()->back();
+    }
+
+    public function search() 
+    {
+        $search_text = $_GET['query'];
+        $projects = Project::where('nom', 'LIKE', '%'.$search_text.'%')->get();
+        return view('admin.projects.search', compact('projects'));
     }
 }
